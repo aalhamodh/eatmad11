@@ -2179,6 +2179,35 @@
             document.body.classList.add('dark-theme');
         }
     </script>
+    <script>
+document.getElementById('newRequestForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const trainingType = document.getElementById('trainingType').value;
+    const requestType = document.getElementById('requestType').value;
+    const course = document.getElementById('course').value;
+    const reason = document.getElementById('reason').value;
+    const duration = document.getElementById('duration').value;
+
+    const newRequest = {
+        trainingType,
+        requestType,
+        course,
+        reason,
+        duration,
+        submittedAt: new Date().toISOString()
+    };
+
+    // تخزين في localStorage
+    const requests = JSON.parse(localStorage.getItem('requests') || '[]');
+    requests.push(newRequest);
+    localStorage.setItem('requests', JSON.stringify(requests));
+
+    alert("تم تسجيل الطلب بنجاح!");
+    document.getElementById('newRequestForm').reset();
+    closeModal('newRequestModal');
+});
+</script>
 </body>
 </html>
     <script id="html_badge_script1">
